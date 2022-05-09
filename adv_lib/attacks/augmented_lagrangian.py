@@ -6,7 +6,7 @@ from torch import Tensor, nn
 from torch.autograd import grad
 
 from adv_lib.distances.color_difference import ciede2000_loss
-from adv_lib.distances.lp_norms import l1_distances, l2_distances
+from adv_lib.distances.lp_norms import l1_distances, l2_distances, linf_distances
 from adv_lib.distances.lpips import LPIPS
 from adv_lib.distances.structural_similarity import ms_ssim_loss, ssim_loss
 from adv_lib.utils.lagrangian_penalties import all_penalties
@@ -61,6 +61,7 @@ _distances = {
     'lpips': LPIPS,
     'l2': l2_distances,
     'l1': l1_distances,
+    'linf': linf_distances
 }
 
 
