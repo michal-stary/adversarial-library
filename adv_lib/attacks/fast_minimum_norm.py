@@ -54,7 +54,7 @@ def l1_mid_points(x0: Tensor, x1: Tensor, ε: Tensor) -> Tensor:
     mask = δ_abs > threshold
     mid_points = δ_abs.sub_(threshold).copysign_(δ)
     mid_points.mul_(mask)
-    return x0 + mid_points
+    return x0 + mid_points.reshape(x0.shape)
 
 
 def l2_mid_points(x0: Tensor, x1: Tensor, ε: Tensor) -> Tensor:
