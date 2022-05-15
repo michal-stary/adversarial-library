@@ -133,8 +133,8 @@ def fmn(model: nn.Module,
     # If starting_points is provided, search for the boundary
     if starting_points is not None:
         is_adv = model(starting_points).argmax(dim=1)
-        if not is_adv.all():
-            raise ValueError('Starting points are not all adversarial.')
+        #if not is_adv.all():
+        #    raise ValueError('Starting points are not all adversarial.')
         lower_bound = torch.zeros(batch_size, device=device)
         upper_bound = torch.ones(batch_size, device=device)
         for _ in range(binary_search_steps):
