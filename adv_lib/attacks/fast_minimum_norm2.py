@@ -187,7 +187,7 @@ def fmn2(model: nn.Module,
     distance_to_boundaries = []
     smallest_advs = []
     print(class_indcs)
-    for c_inds in class_indcs:
+    for c_inds in class_indcs.T:
         # logit diff to the c_inds
         labels_infhot = torch.zeros_like(logits).scatter_(1, c_inds.unsqueeze(1), float('inf'))
         logit_diff_func = partial(difference_of_logits, labels=c_inds, labels_infhot=labels_infhot)
