@@ -147,6 +147,8 @@ def fmn2(model: nn.Module,
     adv_inputs = inputs + δ
     logits = model(adv_inputs)
 
+    print(torch.argmax(logits, dim=1))
+    print(torch.argsort(logits, dim=1, descending=True))
     # get top k class indices - TODO remove the true class from here
     class_indcs = torch.argsort(logits, dim=1, descending=True)[:, :top_explore]
 
