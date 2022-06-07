@@ -5,7 +5,7 @@ from functools import partial
 from typing import Tuple
 
 import torch
-from torch import nn, Tensor
+from torch import Tensor, nn
 from torch.autograd import grad
 
 
@@ -28,6 +28,7 @@ def select_index(model: nn.Module,
     top_grad = grad(top_logits.sum(), inputs, only_inputs=True, retain_graph=True)[0]
     pers = []
 
+    c = min(logits.size(1) - 1, c)
     for i in range(c):
         other_logits = logits[:, i + 1]
         other_grad = grad(other_logits.sum(), inputs, only_inputs=True, retain_graph=i + 1 != c)[0]
